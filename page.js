@@ -174,24 +174,6 @@ function formSystem() {
         let mass = Math.random() * (250 - 0.1) + 0.1;
         let star = new Star(position, mass);
         arr.push(star);
-    }   
-    // Tähtiryhmä 4 
-    const randomX4 = d3.randomNormal(width / 2 - 2000, 80);
-    const randomY4 = d3.randomNormal(height / 2 - 1500, 80);
-    for (let i = 0; i < 100; i ++){
-        let position = new Vector([randomX4(), randomY4()]);
-        let mass = Math.random() * (250 - 0.1) + 0.1;
-        let star = new Star(position, mass);
-        arr.push(star);
-    }
-    // Tähtiryhmä 4 
-    const randomX5 = d3.randomNormal(width / 2 - 2000, 80);
-    const randomY5 = d3.randomNormal(height / 2 + 1500, 80);
-    for (let i = 0; i < 100; i ++){
-        let position = new Vector([randomX5(), randomY5()]);
-        let mass = Math.random() * (250 - 0.1) + 0.1;
-        let star = new Star(position, mass);
-        arr.push(star);
     }
     return arr;
 }
