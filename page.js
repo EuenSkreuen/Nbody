@@ -125,12 +125,15 @@ const yAxis = outerSvg.append("g")
 .attr("transform", "translate(50,50)")
 .call(d3.axisLeft(y));
 
-// Lisätään kappaleita niin paljon kuin data vaatii
+// Lisätään kappaleita niin paljon kuin data vaatii, ja asetetaan jokaiselle kappaleelle kuuntelija klikkauksia varten
 const circle = g.selectAll("circle")
 .data(starSystem.map(s => s.position.items))
 .join("circle")
 .attr("transform", d => `translate(${d})`)
-.attr("r", 1.5);
+.attr("r", 1.5)
+.on("click", function(){
+    alert("Bläää");
+});
 
 // Asettaa zoomauksen svg elementille
 outerSvg.call(d3.zoom()
@@ -151,12 +154,22 @@ function formSystem() {
     const randomX1 = d3.randomNormal(width / 2, 80);
     const randomY1 = d3.randomNormal(height / 2, 80);
     arr = [];
-    for (let i = 0; i < 100; i ++){
+    for (let i = 0; i < 25; i ++){
         let position = new Vector([randomX1(), randomY1()]);
-        let mass = Math.random() * (250 - 0.1) + 0.1;
+        let mass = Math.random() * (250 - 1) + 1;
         let star = new Star(position, mass);
         arr.push(star);
     }
+    // Satunnaisia planetoideja
+    for (let i = 0; i < 150; i++){
+        let position = new Vector([randomX1(), randomY1()]);
+        let mass = Math.random() * (0.0009543 - 0.000003003) + 0.000003003
+        //let mass = Math.random() * (10- 1) + 1
+        let planetoid = new Star(position, mass);
+        arr.push(planetoid);
+    }
+    return arr;
+    /*
     // Tähtiryhmä 2
     const randomX2 = d3.randomNormal(width / 2 + 2000, 80);
     const randomY2 = d3.randomNormal(height / 2 + 1500, 80);
@@ -176,6 +189,7 @@ function formSystem() {
         arr.push(star);
     }
     return arr;
+    */
 }
 
 // Ajastin ja funktio kappaleiden sijaintien päivittämiseen
